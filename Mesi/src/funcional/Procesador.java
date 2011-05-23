@@ -7,6 +7,7 @@ public class Procesador {
 	
 	public Procesador(int numero){
 		this.numero=numero;
+		cache = new Cache(numero);
 	}
 	
 	public boolean LeerDireccion(String direccion){

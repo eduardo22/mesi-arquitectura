@@ -11,5 +11,6 @@ public class LineaMemoria {
 	public LineaMemoria(String direccion, int numero){
 		this.direccion=direccion;
 		this.numero=numero;
+		Estado = "E";
 	}
 }

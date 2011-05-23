@@ -8,11 +8,11 @@ public class Mesi {
 	public MemoriaPrincipal memoria;
 
 	public Mesi(){
-		this.procesadores=new ArrayList<Procesador>();
-		this.procesadores.add(new Procesador(0));
-		this.procesadores.add(new Procesador(1));
-		this.procesadores.add(new Procesador(2));
-		this.memoria=new MemoriaPrincipal();
+		procesadores=new ArrayList<Procesador>();
+		procesadores.add(new Procesador(0));
+		procesadores.add(new Procesador(1));
+		procesadores.add(new Procesador(2));
+		memoria=new MemoriaPrincipal();
 	}
 	
 	
