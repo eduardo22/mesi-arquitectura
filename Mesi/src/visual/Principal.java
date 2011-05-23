@@ -1,15 +1,16 @@
 package visual;
 import java.awt.Cursor;
-import java.awt.Font;
-
+import funcional.*;
 import processing.core.*;
 public class Principal extends PApplet{
 	private static final long serialVersionUID = 1L;
 	private final int colorFondo = 0x2B3F60, colorEstado = 0x6f88c3, colorAceptacion = 0xa46834,
 	colorProc = 0xD9C777;
-	final int anchoProc = 150, altoProc = 120;
+	Mesi mesi;
+	final int anchoProc = 150, altoProc = 120, altoCache = 70;
 	public void setup(){
 		size(800, 600);
+		mesi = new Mesi();
 	}
 	public void draw(){
 		background(colorFondo);
@@ -21,9 +22,32 @@ public class Principal extends PApplet{
 		fill(red(color), green(color), blue(color));
 	}
 	private void dibujar(){
-		dibujarProcesador("Procesador 1", width/6, height/4);
-		dibujarProcesador("Procesador 2", width/2, height/4);
-		dibujarProcesador("Procesador 3", 5*width/6, height/4);
+		dibujarProcesador("Procesador 1", width/6, height/5);
+		dibujarProcesador("Procesador 2", width/2, height/5);
+		dibujarProcesador("Procesador 3", 5*width/6, height/5);
+		dibujarCache(1, width/6, 2*height/5);
+		dibujarCache(2, width/2, 2*height/5);
+		dibujarCache(3, 5*width/6, 2*height/5);
+	}
+	private void dibujarCache(int cache, int x, int y){
+		fillInt(colorProc);
+		rect(x-anchoProc/2, y-altoCache/2, anchoProc, altoCache);
+		rect(x-anchoProc/2, y-altoCache/2, anchoProc, (float)(altoProc*0.25));
+		textSize(18);
+		fillInt(0);
+		text("Cache " + cache, x, y-altoCache/2+(float)(altoProc*0.25) - getFontMetrics(getFont()).getHeight()/2);
+		fillInt(colorProc);
+		rect(x-anchoProc/2, y-altoCache/2+(float)(altoProc*0.25), (float)(anchoProc*0.2), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2+(float)(anchoProc*0.2), y-altoCache/2+(float)(altoProc*0.25), (float)(anchoProc*0.3), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2+(float)(anchoProc*0.5), y-altoCache/2+(float)(altoProc*0.25), (float)(anchoProc*0.25), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2+(float)(anchoProc*0.75), y-altoCache/2+(float)(altoProc*0.25), (float)(anchoProc*0.25), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2, y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2,(float)(anchoProc*0.2), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2+(float)(anchoProc*0.2), y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2, (float)(anchoProc*0.3), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2+(float)(anchoProc*0.5), y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2, (float)(anchoProc*0.25), (altoCache-(float)(altoProc*0.25))/2);
+		rect(x-anchoProc/2+(float)(anchoProc*0.75), y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2, (float)(anchoProc*0.25), (altoCache-(float)(altoProc*0.25))/2);
+		textSize(14);
+		fillInt(colorFondo);
+		text(mesi.procesadores.get(cache-1).cache.lineas.get(0).Estado, x-anchoProc/2+((float)(anchoProc*0.2))/2, y-altoCache/2+(float)(altoProc*0.25)+getFontMetrics(getFont()).getHeight());
 	}
 	private void dibujarProcesador(String nombre, float x, float y){
 		textAlign(CENTER);
@@ -66,9 +90,9 @@ public class Principal extends PApplet{
 		return null;
 	}
 	private int[] getBoton(){
-		if(getBoton(width/6, height/4)!=null)return new int[]{1, getBoton(width/6, height/4)};
-		if(getBoton(width/2, height/4)!=null)return new int[]{2, getBoton(width/2, height/4)};
-		if(getBoton(5*width/6, height/4)!=null)return new int[]{3, getBoton(5*width/6, height/4)};
+		if(getBoton(width/6, height/5)!=null)return new int[]{1, getBoton(width/6, height/5)};
+		if(getBoton(width/2, height/5)!=null)return new int[]{2, getBoton(width/2, height/5)};
+		if(getBoton(5*width/6, height/5)!=null)return new int[]{3, getBoton(5*width/6, height/5)};
 		return null;
 	}
 	public void mouseMoved(){
