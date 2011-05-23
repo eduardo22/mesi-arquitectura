@@ -6,5 +6,6 @@ public class LineaCache extends LineaMemoria{
 	
 	public LineaCache(String direccion,int numero) {
 		super(direccion, numero);
+		direccionMemoriaPrinciapal="";
 	}
 }
