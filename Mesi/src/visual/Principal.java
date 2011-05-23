@@ -48,6 +48,7 @@ public class Principal extends PApplet{
 		textSize(14);
 		fillInt(colorFondo);
 		text(mesi.procesadores.get(cache-1).cache.lineas.get(0).Estado, x-anchoProc/2+((float)(anchoProc*0.2))/2, y-altoCache/2+(float)(altoProc*0.25)+getFontMetrics(getFont()).getHeight());
+		text(mesi.procesadores.get(cache-1).cache.lineas.get(0).direccionMemoriaPrinciapal, x-anchoProc/2+((float)(anchoProc*0.2))/2+(float)(anchoProc*0.2), y-altoCache/2+(float)(altoProc*0.25)+getFontMetrics(getFont()).getHeight());
 	}
 	private void dibujarProcesador(String nombre, float x, float y){
 		textAlign(CENTER);
