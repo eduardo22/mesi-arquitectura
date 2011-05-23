@@ -5,7 +5,7 @@ public class Main {
 	 * @param args
 	 */
 	static public void main(String argv[]) {
-		JFrame pantalla = new JFrame("Tetris");
+		JFrame pantalla = new JFrame("Simulador MESI");
 		Principal principal = new Principal();
 		principal.init();
 		principal.setup();
