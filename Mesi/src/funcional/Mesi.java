@@ -20,7 +20,7 @@ public class Mesi {
 		LineaCache linea=null;
 		
 		
-		if(direccionMemoriaPrincipal.equals("0x0")||direccionMemoriaPrincipal.equals("0x0")){
+		if(direccionMemoriaPrincipal.equals("0x0")||direccionMemoriaPrincipal.equals("0x1")){
 			linea=procesadores.get(procesador).cache.lineas.get(0);
 		}else{
 			linea=procesadores.get(procesador).cache.lineas.get(1);
