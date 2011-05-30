@@ -11,6 +11,12 @@ public class LineaMemoria {
 	public LineaMemoria(String direccion, int numero){
 		this.direccion=direccion;
 		this.numero=numero;
-		Estado = "I";
+		Estado = "S";
+	}
+	
+	public String toString(){
+		String res="";
+		res+=numero+", "+direccion+ ", " + valor + ", " + Estado + " ,"+"\n";
+		return res;
 	}
 }

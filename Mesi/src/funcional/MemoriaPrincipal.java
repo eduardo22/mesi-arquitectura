@@ -24,6 +24,15 @@ public class MemoriaPrincipal {
 		return -1;
 	}
 	
+	public String estado(String direccion){
+		
+		if(direccion.equals("0x0"))return lineas.get(0).Estado;
+		if(direccion.equals("0x1"))return lineas.get(1).Estado;
+		if(direccion.equals("0x2"))return lineas.get(2).Estado;
+		if(direccion.equals("0x3"))return lineas.get(3).Estado;
+		return null;
+	}
+	
 	public void ActualizarDireccion(String direccion,String estado,int valor){
 		
 		if(direccion.equals("0x0")){
