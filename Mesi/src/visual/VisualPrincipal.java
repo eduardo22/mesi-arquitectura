@@ -132,7 +132,7 @@ public class VisualPrincipal{
 		parent.rect(x-anchoProc/2, y-altoProc/2, anchoProc, altoProc);
 		parent.rect(x-anchoProc/2, y-altoProc/2, anchoProc, (float)(altoProc*0.25));
 		parent.fill(0);
-		parent.text(nombre, x, y-altoProc/2 + (float)(altoProc*0.25) - parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		//parent.text(nombre, x, y-altoProc/2 + (float)(altoProc*0.25) - parent.getFontMetrics(parent.getFont()).getHeight()/2);
 		fillInt(colorAceptacion);
 		parent.rect(x-anchoProc/2+3, y-(float)(altoProc*0.25)+4, anchoProc/2-6, (float)(altoProc*0.75)/4-4);
 		parent.rect(x-anchoProc/2+3, y-(float)(altoProc*0.25)+(float)(altoProc*0.75)/4+2, anchoProc/2-6, (float)(altoProc*0.75)/4-4);

@@ -15,8 +15,8 @@ public class Mesi {
 		memoria=new MemoriaPrincipal();
 	}
 	
-	
 	public boolean LeerDireccion(int procesador,String direccionMemoriaPrincipal){
+		
 		LineaCache linea=null;
 		
 		
@@ -25,30 +25,48 @@ public class Mesi {
 		}else{
 			linea=procesadores.get(procesador).cache.lineas.get(1);
 		}
-		if(linea.direccionMemoriaPrinciapal.equals(direccionMemoriaPrincipal)){
-			if(linea.Estado.equals("E")||linea.Estado.equals("M")||linea.Estado.equals("S")){
+		
+		if(linea.Estado.equals("E")||linea.Estado.equals("M")||linea.Estado.equals("S")){
+			if(linea.direccionMemoriaPrinciapal.equals(direccionMemoriaPrincipal)){
 				linea.aciertos++;
 				return true;
-			}else if(linea.Estado.equals("I")){
+			}else{
 				linea.fallos++;
-				if(linea.Estado.equals("I")){
-					for (Procesador p : procesadores) {
-						for (LineaCache lc : p.cache.lineas) {
-							if(lc.Estado.equals("M")){
-								memoria.ActualizarDireccion(lc.direccionMemoriaPrinciapal, "S", lc.valor);
-							}
-						}
-					}
-				}
 				linea.valor=memoria.valor(direccionMemoriaPrincipal);
-				linea.Estado=verificarCompartir(procesador, direccionMemoriaPrincipal)?"S":"E";
+				linea.Estado=memoria.estado(direccionMemoriaPrincipal);
+				linea.direccionMemoriaPrinciapal=direccionMemoriaPrincipal;
 				return true;
 			}
-		}else{
-			linea.fallos++;
-			linea.valor=memoria.valor(direccionMemoriaPrincipal);
-			linea.Estado=verificarCompartir(procesador, direccionMemoriaPrincipal)?"S":"E";
-			return true;
+			
+		}else if(linea.Estado.equals("I")){
+			
+			if(memoria.estado(direccionMemoriaPrincipal).equals("I")){
+				List<Integer> c=contienenDireccionValida(direccionMemoriaPrincipal);
+				int p=c.get(0);
+				System.out.println("el procesador "+p);
+				int val=procesadores.get(p).cache.valor(direccionMemoriaPrincipal);
+				//procesadores.get(p).cache.ActualizarEstado(direccionMemoriaPrincipal, "S");
+				actualizarCaches(procesador, direccionMemoriaPrincipal, "S");
+				memoria.ActualizarDireccion(direccionMemoriaPrincipal, "S", val);
+				linea.direccionMemoriaPrinciapal=direccionMemoriaPrincipal;
+				linea.valor=val;
+				linea.Estado="S";
+				return true;
+			}else{
+				linea.fallos++;
+				linea.direccionMemoriaPrinciapal=direccionMemoriaPrincipal;
+				linea.valor=memoria.valor(direccionMemoriaPrincipal);
+				List<Integer> c=contienenDireccionValida(direccionMemoriaPrincipal);
+				if(c.isEmpty()){
+					linea.Estado="E";
+				}
+				else{
+					linea.Estado="S";
+					actualizarCaches(procesador, direccionMemoriaPrincipal, "S");
+				}
+				return true;
+			}
+	
 		}
 		return false;
 	}
@@ -79,6 +97,20 @@ public class Mesi {
 		}
 		
 	}
+	
+	public List<Integer> contienenDireccionValida(String direccionMemoriaPrincipal){
+		List<Integer> lista=new ArrayList<Integer>();
+		for (Procesador p : procesadores) {
+			for (LineaCache l : p.cache.lineas) {
+				if(l.direccionMemoriaPrinciapal.equals(direccionMemoriaPrincipal)&&(!l.Estado.equals("I"))){
+					lista.add(p.numero);
+				}
+			}
+		}
+		return lista;
+	}
+	
+	
 	public boolean escribirDireccion(int procesador,String direccionMemoriaPrincipal){
 		LineaCache linea=null;
 		if(direccionMemoriaPrincipal.equals("0x0")||direccionMemoriaPrincipal.equals("0x1")){
@@ -86,26 +118,47 @@ public class Mesi {
 		}else{
 			linea=procesadores.get(procesador).cache.lineas.get(1);
 		}
-		if(linea.direccionMemoriaPrinciapal.equals(direccionMemoriaPrincipal)){
-			String estado=linea.Estado;
-			if(estado.equals("M")){
+		
+		if(memoria.estado(direccionMemoriaPrincipal).equals("I")){
+			if(linea.Estado.equals("M")){
 				linea.valor++;
-			}else if(estado.equals("E")){
-				memoria.ActualizarDireccion(direccionMemoriaPrincipal, "I", linea.valor);
-				linea.valor++;
-			}else if(estado.equals("S")){
-				memoria.ActualizarDireccion(direccionMemoriaPrincipal, "I", linea.valor);
-				linea.valor++;
-				actualizarCaches(procesador, direccionMemoriaPrincipal, "I");
 				return true;
-			}else if(estado.equals("I")){
-				memoria.ActualizarDireccion(direccionMemoriaPrincipal, "I", linea.valor);
-				linea.valor++;
+			}else{
+				List<Integer> c=contienenDireccionValida(direccionMemoriaPrincipal);
+				int p=c.get(0);
+				System.out.println("el procesador "+p);
+				int val=procesadores.get(p).cache.valor(direccionMemoriaPrincipal);
+				memoria.ActualizarDireccion(direccionMemoriaPrincipal, "I", val);
 				actualizarCaches(procesador, direccionMemoriaPrincipal, "I");
+				linea.valor=val+1;
+				linea.Estado="M";
+				linea.direccionMemoriaPrinciapal=direccionMemoriaPrincipal;
 				return true;
 			}
+		}else{
+			actualizarCaches(procesador, direccionMemoriaPrincipal, "I");
+			linea.valor=memoria.valor(direccionMemoriaPrincipal)+1;
+			linea.Estado="M";
+			linea.direccionMemoriaPrinciapal=direccionMemoriaPrincipal;
+			memoria.ActualizarDireccion(direccionMemoriaPrincipal, "I", memoria.valor(direccionMemoriaPrincipal));
+			return true;
 		}
-		return false;
+		
+		
+	}
+	
+	public String toString(){
+		String res="memoria"+"\n";
+		for (LineaMemoria l : memoria.lineas) {
+			res+=l.toString();
+		}
+		for (Procesador p : procesadores) {
+			res+="procesador "+p.numero+"\n";
+			for (LineaCache l : p.cache.lineas) {
+				res+=l.toString()+"\n";
+			}
+		}
+		return res;
 	}
 
 }

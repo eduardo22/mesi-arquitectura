@@ -22,6 +22,7 @@ public class Principal extends PApplet{
 		if(vp.getBoton()!=null){
 			if(vp.getBoton()[1]<=4)mesi.LeerDireccion(vp.getBoton()[0]-1, "0x"+(vp.getBoton()[1]-1));
 			else mesi.escribirDireccion(vp.getBoton()[0]-1, "0x"+(vp.getBoton()[1]-5));
+			System.out.println(mesi.toString());
 		}
 	}
 }
