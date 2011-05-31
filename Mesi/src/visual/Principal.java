@@ -6,6 +6,7 @@ public class Principal extends PApplet{
 	private static final long serialVersionUID = 1L;
 	public Mesi mesi;
 	VisualPrincipal vp;
+	boolean estaAnimando = false;
 	public void setup(){
 		size(800, 600);
 		vp = new VisualPrincipal(this);
@@ -15,11 +16,13 @@ public class Principal extends PApplet{
 		vp.plot();
 	}
 	public void mouseMoved(){
-		if(vp.getBoton()!=null)setCursor(new Cursor(Cursor.HAND_CURSOR));
+		if(!estaAnimando&&vp.getBoton()!=null)setCursor(new Cursor(Cursor.HAND_CURSOR));
 		else setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	public void mouseClicked(){
-		if(vp.getBoton()!=null){
+		if(!estaAnimando&&vp.getBoton()!=null){
+			estaAnimando=true;
+			vp.inicializarAnimacion(vp.getBoton()[0]-1);
 			if(vp.getBoton()[1]<=4)mesi.LeerDireccion(vp.getBoton()[0]-1, "0x"+(vp.getBoton()[1]-1));
 			else mesi.escribirDireccion(vp.getBoton()[0]-1, "0x"+(vp.getBoton()[1]-5));
 			System.out.println(mesi.toString());

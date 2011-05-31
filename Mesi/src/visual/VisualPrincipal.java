@@ -4,6 +4,9 @@ public class VisualPrincipal{
 	private Principal parent;
 	private final int colorFondo = 0x2B3F60, colorEstado = 0x6f88c3, colorAceptacion = 0xa46834,
 	colorProc = 0xD9C777, colorBus = 0xB4B7C1;
+	private int cacheDesde = -1;
+	private int posAnimado;
+	private int pasoAnimacion;
 	final int anchoProc = 150, altoProc = 120, altoCache = 70, altoMP = 150, anchoBus = 12;
 	VisualPrincipal(Principal parent){
 		this.parent = parent;
@@ -12,15 +15,86 @@ public class VisualPrincipal{
 	private void fillInt(int color){
 		parent.fill(parent.red(color), parent.green(color), parent.blue(color));
 	}
+	public void inicializarAnimacion(int cacheDesde){
+		this.cacheDesde = cacheDesde;
+		posAnimado = 0;
+		pasoAnimacion = 0;
+	}
 	public void plot(){
 		dibujarProcesador("Procesador 1", parent.width/6, parent.height/5);
 		dibujarProcesador("Procesador 2", parent.width/2, parent.height/5);
 		dibujarProcesador("Procesador 3", 5*parent.width/6, parent.height/5);
+		dibujarBuses();
+		if(cacheDesde>=0)dibujarAnimado();
 		dibujarCache(1, parent.width/6, 2*parent.height/5);
 		dibujarCache(2, parent.width/2, 2*parent.height/5);
 		dibujarCache(3, 5*parent.width/6, 2*parent.height/5);
 		dibujarMemoriaPrincipal(parent.width/2, 4*parent.height/5);
-		dibujarBuses();
+	}
+	private void dibujarAnimado(){
+		parent.fill(255);
+		if(cacheDesde==0){
+			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos2 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6-anchoProc/4-anchoBus/2+anchoBus)+anchoBus+anchoBus/4-3;
+			int pos3 = pos2+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos4 = pos1-(parent.width/6-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
+			int pos5 = pos4+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+			if(posAnimado<=pos1)
+				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos2)
+				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos3){
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos2-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos2+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			}
+			else if(posAnimado<=pos4)
+				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos5)
+				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+		}
+		if(cacheDesde==1){
+			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos2 = pos1+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos3 = pos1-(parent.width/2-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
+			int pos4 = pos3+pos1+anchoBus;
+			if(posAnimado<=pos1)
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos2){
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos1+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			}
+			else if(posAnimado<=pos3){
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			}
+			else if(posAnimado<=pos4){
+				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+			}
+		}
+		if(cacheDesde==2){
+			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos2 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6-anchoProc/4-anchoBus/2+anchoBus)+anchoBus+anchoBus/4-3;
+			int pos3 = pos2+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos4 = pos1-(parent.width/6-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
+			int pos5 = pos4+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+			if(posAnimado<=pos1)
+				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos2)
+				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos3){
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos2-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos2+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			}
+			else if(posAnimado<=pos4)
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+			else if(posAnimado<=pos5)
+				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+		}
+		posAnimado+=2;
 	}
 	private void dibujarBuses(){
 		fillInt(colorEstado);
@@ -140,7 +214,7 @@ public class VisualPrincipal{
 		parent.rect(x-anchoProc/2, y-altoProc/2, anchoProc, altoProc);
 		parent.rect(x-anchoProc/2, y-altoProc/2, anchoProc, (float)(altoProc*0.25));
 		parent.fill(0);
-		//parent.text(nombre, x, y-altoProc/2 + (float)(altoProc*0.25) - parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(nombre, x, y-altoProc/2 + (float)(altoProc*0.25) - parent.getFontMetrics(parent.getFont()).getHeight()/2);
 		fillInt(colorAceptacion);
 		parent.rect(x-anchoProc/2+3, y-(float)(altoProc*0.25)+4, anchoProc/2-6, (float)(altoProc*0.75)/4-4);
 		parent.rect(x-anchoProc/2+3, y-(float)(altoProc*0.25)+(float)(altoProc*0.75)/4+2, anchoProc/2-6, (float)(altoProc*0.75)/4-4);
