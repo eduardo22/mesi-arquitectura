@@ -86,16 +86,24 @@ public class VisualPrincipal{
 		fillInt(0);
 		parent.text("Memoria Princ.", x, y-altoMP/2+(float)(altoProc*0.25) - parent.getFontMetrics(parent.getFont()).getHeight()/2);
 		fillInt(colorAceptacion);
-		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+3, anchoProc-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
-		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1, anchoProc-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
-		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1, anchoProc-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
-		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1, anchoProc-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+3, (float)(anchoProc*0.75)-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1, (float)(anchoProc*0.75)-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1, (float)(anchoProc*0.75)-8, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x-anchoProc/2+4, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1, (float)(anchoProc*0.75)-8, (altoMP-4-(float)(altoProc*0.25))/4-2);		
+		parent.rect(x+((float)(anchoProc*0.25)), y-altoMP/2+(float)(altoProc*0.25)+3, (float)(anchoProc*0.25)-4, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x+((float)(anchoProc*0.25)), y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1, (float)(anchoProc*0.25)-4, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x+((float)(anchoProc*0.25)), y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1, (float)(anchoProc*0.25)-4, (altoMP-4-(float)(altoProc*0.25))/4-2);
+		parent.rect(x+((float)(anchoProc*0.25)), y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1, (float)(anchoProc*0.25)-4, (altoMP-4-(float)(altoProc*0.25))/4-2);		
 		fillInt(colorProc);
 		parent.textSize(14);
-		parent.text("0x0", x, y-altoMP/2+(float)(altoProc*0.25)+3+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
-		parent.text("0x1", x, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
-		parent.text("0x2", x, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
-		parent.text("0x3", x, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text("0x0", x-anchoProc/2+((float)(anchoProc*0.75)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+3+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text("0x1", x-anchoProc/2+((float)(anchoProc*0.75)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text("0x2", x-anchoProc/2+((float)(anchoProc*0.75)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text("0x3", x-anchoProc/2+((float)(anchoProc*0.75)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);		
+		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+3+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
 	}
 	private void dibujarCache(int cache, int x, int y){
 		fillInt(colorProc);
