@@ -52,6 +52,10 @@ public class VisualPrincipal{
 				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
 			else if(posAnimado<=pos5)
 				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+			else {
+				cacheDesde=-1;
+				parent.estaAnimando=false;
+			}
 		}
 		if(cacheDesde==1){
 			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
@@ -73,6 +77,10 @@ public class VisualPrincipal{
 				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
 				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
 			}
+			else {
+				cacheDesde=-1;
+				parent.estaAnimando=false;
+			}
 		}
 		if(cacheDesde==2){
 			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
@@ -93,8 +101,12 @@ public class VisualPrincipal{
 				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
 			else if(posAnimado<=pos5)
 				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+			else {
+				cacheDesde=-1;
+				parent.estaAnimando=false;
+			}
 		}
-		posAnimado+=2;
+		posAnimado+=4;
 	}
 	private void dibujarBuses(){
 		fillInt(colorEstado);
