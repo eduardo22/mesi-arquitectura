@@ -2,7 +2,7 @@ package visual;
 import processing.core.*;
 public class VisualPrincipal{
 	private Principal parent;
-	private final int colorFondo = 0x2B3F60, colorEstado = 0x6f88c3, colorAceptacion = 0xa46834,
+	public final int colorFondo = 0x2B3F60, colorEstado = 0x6f88c3, colorAceptacion = 0xa46834,
 	colorProc = 0xD9C777, colorBus = 0xB4B7C1;
 	private int cacheDesde = -1;
 	private int posAnimado;
@@ -12,7 +12,7 @@ public class VisualPrincipal{
 		this.parent = parent;
 		parent.background(colorFondo);
 	}
-	private void fillInt(int color){
+	public void fillInt(int color){
 		parent.fill(parent.red(color), parent.green(color), parent.blue(color));
 	}
 	public void inicializarAnimacion(int cacheDesde){
