@@ -33,77 +33,102 @@ public class VisualPrincipal{
 	}
 	private void dibujarAnimado(){
 		parent.fill(255);
-		if(cacheDesde==0){
-			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
-			int pos2 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6-anchoProc/4-anchoBus/2+anchoBus)+anchoBus+anchoBus/4-3;
-			int pos3 = pos2+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
-			int pos4 = pos1-(parent.width/6-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
-			int pos5 = pos4+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
-			if(posAnimado<=pos1)
-				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
-			else if(posAnimado<=pos2)
-				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-			else if(posAnimado<=pos3){
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos2-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos2+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+		if(pasoAnimacion==0){
+			if(cacheDesde==0){
+				int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+				int pos2 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6-anchoProc/4-anchoBus/2+anchoBus)+anchoBus+anchoBus/4-3;
+				int pos3 = pos2+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+				int pos4 = pos1-(parent.width/6-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
+				int pos5 = pos4+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+				if(posAnimado<=pos1)parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos2)parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos3){
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos2-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos2+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				}
+				else if(posAnimado<=pos4)parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos5)parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				else {
+					pasoAnimacion++;
+					posAnimado = 0;
+				}
 			}
-			else if(posAnimado<=pos4)
-				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-			else if(posAnimado<=pos5)
-				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-			else {
-				cacheDesde=-1;
-				parent.estaAnimando=false;
+			if(cacheDesde==1){
+				int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+				int pos2 = pos1+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+				int pos3 = pos1-(parent.width/2-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
+				int pos4 = pos3+pos1+anchoBus;
+				if(posAnimado<=pos1)parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos2){
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos1+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				}
+				else if(posAnimado<=pos3){
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				}
+				else if(posAnimado<=pos4){
+					parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+					parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				}
+				else {
+					posAnimado = 0;
+					pasoAnimacion++;
+				}
+			}
+			if(cacheDesde==2){
+				int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+				int pos2 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6-anchoProc/4-anchoBus/2+anchoBus)+anchoBus+anchoBus/4-3;
+				int pos3 = pos2+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+				int pos4 = pos1-(parent.width/6-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
+				int pos5 = pos4+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
+				if(posAnimado<=pos1)parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos2)parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos3){
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos2-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos2+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+					parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				}
+				else if(posAnimado<=pos4)parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				else if(posAnimado<=pos5)parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				else {
+					pasoAnimacion++;
+					posAnimado = 0;
+				}
 			}
 		}
-		if(cacheDesde==1){
-			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
-			int pos2 = pos1+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
-			int pos3 = pos1-(parent.width/2-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
-			int pos4 = pos3+pos1+anchoBus;
-			if(posAnimado<=pos1)
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
+		else if(pasoAnimacion==1){
+			int pos1 = 4*parent.height/5-anchoProc/2-(3*parent.height/5 + anchoBus/2)+anchoBus-2;
+			int pos2 = pos1+3*parent.height/5-anchoBus/2 - (parent.height/5+altoProc/2)+anchoBus-4;
+			int pos3 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6+anchoProc/4-anchoBus/2);
+			int pos4 = pos1-(parent.width/2+anchoProc/4-anchoBus/2)+5*parent.width/6+anchoProc/4-anchoBus/2;
+			int pos5 = pos3+3*parent.height/5-anchoBus/2+2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+			int pos6 = pos4+3*parent.height/5-anchoBus/2+2-(parent.height/5+altoProc/2)+anchoBus/2-4;
+			if(posAnimado<=pos1)parent.rect(parent.width/2+anchoProc/4-anchoBus/2+2, 4*parent.height/5-anchoProc/2-posAnimado, anchoBus-4, anchoBus-4);
 			else if(posAnimado<=pos2){
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos1+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2+anchoProc/4-anchoBus/2+2, 3*parent.height/5-anchoBus/2-posAnimado+pos1, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2+anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5-anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5-anchoBus/2+2, anchoBus-4, anchoBus-4);
 			}
 			else if(posAnimado<=pos3){
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2+anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5-anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5-anchoBus/2+2, anchoBus-4, anchoBus-4);
 			}
 			else if(posAnimado<=pos4){
-				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos3-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/2+anchoProc/4-anchoBus/2+2-pos1+posAnimado, 3*parent.height/5-anchoBus/2+2, anchoBus-4, anchoBus-4);
+				parent.rect(parent.width/6+anchoProc/4-anchoBus/2+2, 3*parent.height/5-anchoBus/2+2+pos3-posAnimado, anchoBus-4, anchoBus-4);
 			}
+			else if(posAnimado<=pos5){
+				parent.rect(parent.width/6+anchoProc/4-anchoBus/2+2, 3*parent.height/5-anchoBus/2+2+pos3-posAnimado, anchoBus-4, anchoBus-4);
+				parent.rect(5*parent.width/6+anchoProc/4-anchoBus/2+2, 3*parent.height/5-anchoBus/2+2+pos4-posAnimado, anchoBus-4, anchoBus-4);
+			}
+			else if(posAnimado<=pos6)parent.rect(5*parent.width/6+anchoProc/4-anchoBus/2+2, 3*parent.height/5-anchoBus/2+2+pos4-posAnimado, anchoBus-4, anchoBus-4);
 			else {
-				cacheDesde=-1;
+				pasoAnimacion=-1;
 				parent.estaAnimando=false;
-			}
-		}
-		if(cacheDesde==2){
-			int pos1 = 3*parent.height/5 - parent.height/10 - anchoBus/2-(parent.height/5+altoProc/2)+anchoBus/2-4;
-			int pos2 = pos1+parent.width/2-anchoProc/4-anchoBus/2-(parent.width/6-anchoProc/4-anchoBus/2+anchoBus)+anchoBus+anchoBus/4-3;
-			int pos3 = pos2+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
-			int pos4 = pos1-(parent.width/6-anchoProc/4-anchoBus/2)+5*parent.width/6-anchoProc/4-anchoBus/2;
-			int pos5 = pos4+3*parent.height/5 - parent.height/10 - (parent.height/5+altoProc/2)+anchoBus/2-4;
-			if(posAnimado<=pos1)
-				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2, parent.height/5+altoProc/2+posAnimado, anchoBus-4, anchoBus-4);
-			else if(posAnimado<=pos2)
-				parent.rect(5*parent.width/6-anchoProc/4-anchoBus/2+2+pos1-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-			else if(posAnimado<=pos3){
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos2-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2-pos2+posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-			}
-			else if(posAnimado<=pos4)
-				parent.rect(parent.width/2-anchoProc/4-anchoBus/2+2+pos2-posAnimado, 3*parent.height/5 - parent.height/10 - anchoBus/2+2, anchoBus-4, anchoBus-4);
-			else if(posAnimado<=pos5)
-				parent.rect(parent.width/6-anchoProc/4-anchoBus/2+2, 3*parent.height/5 - parent.height/10 - anchoBus/2+pos4-posAnimado+anchoBus/2-4, anchoBus-4, anchoBus-4);
-			else {
 				cacheDesde=-1;
-				parent.estaAnimando=false;
 			}
 		}
 		posAnimado+=4;
