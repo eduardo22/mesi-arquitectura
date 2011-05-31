@@ -212,9 +212,9 @@ public class VisualPrincipal{
 		parent.text("0x2", x-anchoProc/2+((float)(anchoProc*0.75)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
 		parent.text("0x3", x-anchoProc/2+((float)(anchoProc*0.75)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);		
 		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+3+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
-		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
-		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
-		parent.text(parent.mesi.memoria.lineas.get(0).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(parent.mesi.memoria.lineas.get(1).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(parent.mesi.memoria.lineas.get(2).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+2*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
+		parent.text(parent.mesi.memoria.lineas.get(3).Estado, x+((float)(anchoProc*0.25))+(float)((anchoProc*0.25)-4)/2, y-altoMP/2+(float)(altoProc*0.25)+2+3*(altoMP-4-(float)(altoProc*0.25))/4+1+(altoMP-4-(float)(altoProc*0.25))/4-2-parent.getFontMetrics(parent.getFont()).getHeight()/2);
 	}
 	private void dibujarCache(int cache, int x, int y){
 		fillInt(colorProc);
@@ -236,11 +236,11 @@ public class VisualPrincipal{
 		fillInt(colorFondo);
 		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(0).Estado, x-anchoProc/2+((float)(anchoProc*0.2))/2, y-altoCache/2+(float)(altoProc*0.25)+parent.getFontMetrics(parent.getFont()).getHeight());
 		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(0).direccionMemoriaPrinciapal, x-anchoProc/2+((float)(anchoProc*0.3))/2+(float)(anchoProc*0.2), y-altoCache/2+(float)(altoProc*0.25)+parent.getFontMetrics(parent.getFont()).getHeight());
-		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(0).aciertos+"", x-anchoProc/2+((float)(anchoProc*0.25))/2+(float)(anchoProc*0.5), y-altoCache/2+(float)(altoProc*0.25)+parent.getFontMetrics(parent.getFont()).getHeight());
+		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(0).valor+"", x-anchoProc/2+((float)(anchoProc*0.25))/2+(float)(anchoProc*0.5), y-altoCache/2+(float)(altoProc*0.25)+parent.getFontMetrics(parent.getFont()).getHeight());
 		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(0).fallos+"", x-anchoProc/2+((float)(anchoProc*0.25))/2+(float)(anchoProc*0.75), y-altoCache/2+(float)(altoProc*0.25)+parent.getFontMetrics(parent.getFont()).getHeight());
 		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(1).Estado, x-anchoProc/2+((float)(anchoProc*0.2))/2, y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2+parent.getFontMetrics(parent.getFont()).getHeight());
 		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(1).direccionMemoriaPrinciapal, x-anchoProc/2+((float)(anchoProc*0.3))/2+(float)(anchoProc*0.2),y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2+parent.getFontMetrics(parent.getFont()).getHeight());
-		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(1).aciertos+"", x-anchoProc/2+((float)(anchoProc*0.25))/2+(float)(anchoProc*0.5), y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2+parent.getFontMetrics(parent.getFont()).getHeight());
+		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(1).valor+"", x-anchoProc/2+((float)(anchoProc*0.25))/2+(float)(anchoProc*0.5), y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2+parent.getFontMetrics(parent.getFont()).getHeight());
 		parent.text(parent.mesi.procesadores.get(cache-1).cache.lineas.get(1).fallos+"", x-anchoProc/2+((float)(anchoProc*0.25))/2+(float)(anchoProc*0.75), y-altoCache/2+(float)(altoProc*0.25)+(altoCache-(float)(altoProc*0.25))/2+parent.getFontMetrics(parent.getFont()).getHeight());		
 	}
 	private void dibujarProcesador(String nombre, float x, float y){
