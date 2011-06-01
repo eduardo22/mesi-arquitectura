@@ -19,6 +19,7 @@ public class Principal extends PApplet{
 			vp.plot();
 			fill(255);
 			text("Acerca de...", width-43, 20);
+			text("Reiniciar", 43, 20);
 		}
 		else {
 			vp.fillInt(vp.colorFondo);
@@ -33,6 +34,7 @@ public class Principal extends PApplet{
 	public void mouseMoved(){
 		if(!acercaDe&&!estaAnimando&&vp.getBoton()!=null)setCursor(new Cursor(Cursor.HAND_CURSOR));
 		else if(!estaAnimando&&mouseX>=width-85&&mouseX<width&&mouseY<=23&&mouseY>0)setCursor(new Cursor(Cursor.HAND_CURSOR));
+		else if(!estaAnimando&&mouseX>=10&&mouseX<78&&mouseY<=23&&mouseY>0)setCursor(new Cursor(Cursor.HAND_CURSOR));
 		else setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 	}
 	public void mouseClicked(){
@@ -45,6 +47,7 @@ public class Principal extends PApplet{
 		}
 		else{
 			 if(!estaAnimando&&mouseX>=width-85&&mouseX<width&&mouseY<=23&&mouseY>0)acercaDe=!acercaDe;
+			 if(!estaAnimando&&mouseX>=10&&mouseX<78&&mouseY<=23&&mouseY>0) mesi = new Mesi();
 		}
 	}
 }
