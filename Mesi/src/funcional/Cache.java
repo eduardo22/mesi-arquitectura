@@ -60,5 +60,15 @@ public class Cache {
 		}
 
 	}
+	
+	public void aumtarContador(String direccion){
+		if (direccion.equals("0x0") || direccion.equals("0x1")) {
+			lineas.get(0).fallos++;
+			return;
+		} else {
+			lineas.get(1).fallos++;
+			return;
+		}
+	}
 
 }

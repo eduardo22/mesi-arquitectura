@@ -95,8 +95,10 @@ public class Mesi {
 		if(existe){
 			for (Procesador pit : procesadores) {
 				if(pit.cache.estado(direccionMemoriaPrincipal).equals("M")){
-					if(!p.cache.lineas.get(nCache).Estado.equals("M"))
-					memoria.ActualizarDireccion(direccionMemoriaPrincipal, "S", pit.cache.lineas.get(nCache).valor);
+					if(!p.cache.lineas.get(nCache).Estado.equals("M")){
+						memoria.ActualizarDireccion(direccionMemoriaPrincipal, "S", pit.cache.lineas.get(nCache).valor);
+						memoria.aumentarEscritura(direccionMemoriaPrincipal);
+					}
 					if(pit.numero!=procesador){
 						pit.cache.ActualizarEstado(direccionMemoriaPrincipal, "S");
 						pit.cache.ActualizarValor(direccionMemoriaPrincipal, memoria.valor(direccionMemoriaPrincipal));
@@ -107,6 +109,7 @@ public class Mesi {
 			
 			if(p.cache.estado(direccionMemoriaPrincipal).equals("I")){
 				p.cache.ActualizarEstado(direccionMemoriaPrincipal, "S");
+				p.cache.aumtarContador(direccionMemoriaPrincipal);
 				//si alguien tiene estado E lo paso a S
 				for (Procesador pit : procesadores) {
 					if(pit.cache.estado(direccionMemoriaPrincipal).equals("E")){
@@ -119,11 +122,12 @@ public class Mesi {
 			
 		}else{
 			//no existe la direccion de memoria en cache osea se produce un fallo
-			
 			//verificar  modifcados para actualizar la memoria principal
 			for (Procesador pit : procesadores) {
 				if(pit.cache.estado(direccionMemoriaPrincipal).equals("M")){
 					memoria.ActualizarDireccion(direccionMemoriaPrincipal, "S", pit.cache.lineas.get(nCache).valor);
+					memoria.aumentarEscritura(direccionMemoriaPrincipal);
+					
 				}
 			}
 			
@@ -136,6 +140,7 @@ public class Mesi {
 			//El que hiso la orden de escritura para a estado E por ser el primero en leer
 			p.cache.ActualizarEstado(direccionMemoriaPrincipal, "E");
 			p.cache.ActualizarValor(direccionMemoriaPrincipal, memoria.valor(direccionMemoriaPrincipal));
+			p.cache.aumtarContador(direccionMemoriaPrincipal);
 			
 		}
 		
@@ -246,6 +251,7 @@ public class Mesi {
 				linea.valor++;
 				return true;
 			}else{
+				memoria.aumentarEscritura(direccionMemoriaPrincipal);
 				List<Integer> c=contienenDireccionValida(direccionMemoriaPrincipal);
 				if(!c.isEmpty()){
 				int p=c.get(0);
@@ -269,7 +275,6 @@ public class Mesi {
 			linea.Estado="M";
 			linea.direccionMemoriaPrinciapal=direccionMemoriaPrincipal;
 			memoria.ActualizarDireccion(direccionMemoriaPrincipal, "I", memoria.valor(direccionMemoriaPrincipal));
-			
 			return true;
 		}
 		

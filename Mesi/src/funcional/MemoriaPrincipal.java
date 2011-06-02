@@ -33,6 +33,13 @@ public class MemoriaPrincipal {
 		return null;
 	}
 	
+	public void aumentarEscritura(String direccion){
+		if(direccion.equals("0x0"))lineas.get(0).fallos++;
+		if(direccion.equals("0x1"))lineas.get(1).fallos++;
+		if(direccion.equals("0x2"))lineas.get(2).fallos++;
+		if(direccion.equals("0x3"))lineas.get(3).fallos++;
+	}
+	
 	public void ActualizarDireccion(String direccion,String estado,int valor){
 		
 		if(direccion.equals("0x0")){
